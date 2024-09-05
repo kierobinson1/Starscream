@@ -117,10 +117,10 @@ public class TCPTransport: Transport {
                     if(errorCode == .ETIMEDOUT || errorCode == .ENETDOWN || errorCode == .ENETUNREACH) {
                         self?.delegate?.connectionChanged(state: .failed(error))
                     }else{
-                        self?.delegate?.connectionChanged(state: .waiting)
+                        self?.delegate?.connectionChanged(state: .waiting(error))
                     }
                 default:
-                    self?.delegate?.connectionChanged(state: .waiting)
+                    self?.delegate?.connectionChanged(state: .waiting(error))
                 }
             case .cancelled:
                 self?.delegate?.connectionChanged(state: .cancelled)
